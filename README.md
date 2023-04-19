@@ -40,3 +40,23 @@ jobs :
                 python ci.py
 
 ```
+
+## step 3. add trigger for pull-request using github actions
+
+```
+name: trigger-demo
+on: 
+    push:
+        branches:
+            - main
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    trigger-demo:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "first pull request tigger github action"
+```
+
+## step 4.
