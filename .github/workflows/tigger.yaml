@@ -1,4 +1,5 @@
 name: trigger-demo
+run-name: ${{github.actor}} is testing out Github Actions
 on: 
     push:
         branches:
