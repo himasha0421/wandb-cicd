@@ -15,7 +15,7 @@ jobs:
                 shell: python
                 run: |
                     import os
-                    with open( os.environ['GITHUB_OUPUT'] , a ) as f:
+                    with open( os.environ['GITHUB_OUPTUT'] , a ) as f:
                         print( f'VAL=true' , file=f )
             
             -   name: get github out variable
