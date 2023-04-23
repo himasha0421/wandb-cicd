@@ -19,7 +19,7 @@ jobs:
             -   name: Install conda using microMamba
                 uses: mamba-org/provision-with-micromamba@main
                 with:
-                    environment-file: test-example/conda-enviroment.yaml
+                    environment-file: test-example/conda-environment.yaml
                     environment-name: course
                     cache-env: true
                     cache-downloads: true
