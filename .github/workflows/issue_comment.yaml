@@ -1,8 +1,9 @@
 name: excercise-ghapi
 on:
+    pull_request:
+        types: [opened]
     issue_comment:
-      types:
-      - created
+        types: [created]
 
 permissions:
   issues: write
