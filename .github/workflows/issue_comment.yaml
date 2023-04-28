@@ -1,11 +1,10 @@
-name: excercise-ghapi
+name: GhApi Issue Trigger
 on:
     pull_request:
-        types: [opened]
     issue_comment:
-        types: [created]
 
 permissions:
+  contents: read
   issues: write
   pull-requests: write
 
