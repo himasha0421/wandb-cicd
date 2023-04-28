@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   ghapi-exercise:
-    if: (github.event.issue.pull_request != null) && (github.event.comment.body == '/bug')
+    if:  (github.event.comment.body == '/bug')
     runs-on: ubuntu-latest
     steps:        
     - name: install dependencies
