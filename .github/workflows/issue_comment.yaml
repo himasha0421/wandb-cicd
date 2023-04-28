@@ -1,8 +1,6 @@
 name: excercise-ghapi
 on: 
     issue_comment:
-        types:
-            - created
 
 permissions:
   issues: write
