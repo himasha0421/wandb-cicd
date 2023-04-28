@@ -1,6 +1,8 @@
 name: excercise-ghapi
 on: 
     issue_comment:
+        types:
+            - created
 
 permissions:
   issues: write
@@ -8,7 +10,7 @@ permissions:
 
 jobs:
   ghapi-exercise:
-    if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/bug')
+    if: (github.event.issue.pull_request != null) && (github.event.comment.body == '/bug')
     runs-on: ubuntu-latest
     steps:        
     - name: install dependencies
