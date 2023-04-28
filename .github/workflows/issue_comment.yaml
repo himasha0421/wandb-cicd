@@ -1,0 +1,33 @@
+name: trigger on issue comment
+on: 
+    issue_comment
+
+permissions:
+    issues: write
+    pull-requests: write
+
+jobs:
+    ghapi-issue-comment:
+        if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/bug')
+        runs-on: ubuntu-latest
+        steps:
+            -   name: install dependencies
+                run: pip install ghapi
+
+            -   name: see payload
+                run: echo "PAYLOAD :\n${PAYLOAD}\n"
+                env:
+                    PAYLOAD: ${{toJson(github.event)}}
+                
+            -   name: make a comment
+                shell: python
+                run: |
+                    import os
+                    from ghapi.core import GhApi
+                    owner,repo = os.envirom['REPO'].split('/')
+                    api = GhApi(owner=owner , repo=repo)
+                    api.issue.add_label(issue_number=os.environ['NUMBER'],labels=['bug'])
+                env:
+                    REPO: ${{github.repository}}
+                    NUMBER: ${{github.event.issue.number}}
+                    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
