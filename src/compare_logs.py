@@ -17,7 +17,7 @@ def get_baseline_run(entity, project, tag='baseline'):
                                     ) # this is the Mongo Client
     #check on number of baseline runs
     assert len(baseline_runs) == 1 , 'Baseline Run only should associate with single experiment'
-    return baseline_runs
+    return baseline_runs[0]
 
 
 def compare_runs(entity= "himasha" ,
