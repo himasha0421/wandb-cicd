@@ -59,7 +59,7 @@ def compare_runs(entity= "himasha" ,
             wr.RunComparer(diff_only='split', layout={'w': 24, 'h': 15}),
         ]
     )
-    
+
     # save report into wandb
     report.blocks = report.blocks[:1] + [pg] + report.blocks[1:]
     report.save()
@@ -76,4 +76,4 @@ def compare_runs(entity= "himasha" ,
 if __name__=='__main__':
     # run the compre method
     url =  compare_runs()
-    print(f"This is the Run Compre Report URL : {url}")
+    print(f"This is the WanDB Run Compre Report URL : {url}")
