@@ -5,11 +5,11 @@ import wandb
 
 assert os.environ['WANDB_API_KEY'] , "You must set the wandb client api key !!!!"
 #define other first citizen params
-ENTITY = os.getenv['ENTITY'] or 'himasha'
-PROJECT = os.getenv['PROJECT'] or 'mnist-experiment'
-MODEL_TAG = os.getenv['WANDB_TAG'] or 'production-candidate'
-RUN_ID =  os.getenv['RUN_ID']
-MODEL_REGISTRY = os.getenv['REGISTRY'] or 'mnist-registry'
+ENTITY = os.getenv('ENTITY') or 'himasha'
+PROJECT = os.getenv('PROJECT') or 'mnist-experiment'
+MODEL_TAG = os.getenv('WANDB_TAG') or 'production-candidate'
+RUN_ID =  os.getenv('RUN_ID')
+MODEL_REGISTRY = os.getenv('REGISTRY') or 'mnist-registry'
 
 # init wandb client
 api = wandb.Api()

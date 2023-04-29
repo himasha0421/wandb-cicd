@@ -1,5 +1,4 @@
 name: W&B Integration
-
 on:
     issue_comment: # tigger on pr comment
 
