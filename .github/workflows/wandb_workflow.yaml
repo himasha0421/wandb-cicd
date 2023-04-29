@@ -88,8 +88,9 @@ jobs:
                     from ghapi.core import GhApi
                     owner , repo = os.environ['REPO'].split('/')
                     api = GhApi(owner = owner , repo = repo)
-                    api.issues.create_comment(os.environ['NUMBER'] , 
-                        f"New Product Candidate !!!! W&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} W&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}")
+                    api.issues.create_comment(os.environ['NUMBER'] , \
+                        f"New Product Candidate !!!! W&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
+                        W&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}")
                 env:
                     NUMBER: ${{ github.event.issue.number }}
                     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
