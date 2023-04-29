@@ -78,7 +78,7 @@ jobs:
                     PROJECT: 'mnist-experiment'
                     TAG: 'baseline'
                     RUN_ID: ${{steps.get-magic-value.outputs.RUN_ID}}
-                    WANDB_API_KEY: 'b77985991c4b2c51ccc6af56fdfd2515dac6016a'
+                    WANDB_API_KEY: ${{secrets.WANDB_API_KEY}}
                     REGISTRY: 'mnist-registry'
 
             -   name: Make PR Comment
@@ -89,7 +89,7 @@ jobs:
                     owner , repo = os.environ['REPO'].split('/')
                     api = GhApi(owner = owner , repo = repo)
                     api.issues.create_comment(os.environ['NUMBER'], \
-                        f"New Product Candidate !!!! \nW&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
+                        f"New Productioin Model Candidate !!!! \nW&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
                         \nW&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}")
 
                 env:
