@@ -37,7 +37,7 @@ jobs:
                 env:
                     PAYLOAD: ${{ toJSON(github.event) }}
                 
-            -   name: filter for magic comment   # check wheather magic command exists in the pr command
+            -   name: filter for magic comment   # check wheather magic command exists in the pr command 
                 id: filter
                 if: contains(github.event.comment.body, env.MAGIC_COMMENT)  
                 run: echo "magic comment detected"
