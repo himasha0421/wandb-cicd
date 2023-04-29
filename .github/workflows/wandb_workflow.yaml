@@ -77,7 +77,7 @@ jobs:
                     PROJECT: 'mnist-experiment'
                     TAG: 'baseline'
                     RUN_ID: ${{steps.get-magic-value.outputs.RUN_ID}}
-                    WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+                    WANDB_API_KEY: 'b77985991c4b2c51ccc6af56fdfd2515dac6016a'
                     REGISTRY: 'mnist-registry'
 
             -   name: Make PR Comment
