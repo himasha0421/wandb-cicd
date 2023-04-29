@@ -66,7 +66,6 @@ def compare_runs(entity= "himasha" ,
     # open the file and write the report URL
     with open( os.environ['GITHUB_OUTPUT'] , 'a' ) as f:
         print( f'REPORT_URL={report.url}' , file=f )
-
     return report.url
 
 if __name__=='__main__':
