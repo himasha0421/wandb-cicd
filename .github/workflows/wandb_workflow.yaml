@@ -91,6 +91,7 @@ jobs:
                     api.issues.create_comment(os.environ['NUMBER'] , \
                         f"New Product Candidate !!!! W&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
                         W&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}")
+                        
                 env:
                     NUMBER: ${{ github.event.issue.number }}
                     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
