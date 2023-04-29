@@ -1,6 +1,5 @@
 name: GhApi Issue Trigger
 on:
-    pull_request:
     issue_comment:
 
 permissions:
@@ -10,6 +9,7 @@ permissions:
 
 jobs:
   ghapi-exercise:
+    if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/bug')
     runs-on: ubuntu-latest
     steps:        
     - name: install dependencies
