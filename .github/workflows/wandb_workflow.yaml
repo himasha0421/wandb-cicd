@@ -1,0 +1,98 @@
+name: W&B Integration
+
+on:
+    issue_comment: # tigger on pr comment
+
+env:
+    MAGIC_COMMENT: "/wandb" # this is a parameter you can change
+
+permissions:
+    contents: read
+    issues: write
+    pull-requests: write
+
+jobs:
+    WanDB-Workflow: # setup the running enviroment
+        if: (github.event.issue.pull_request != null)
+        runs-on: ubuntu-latest
+        steps:
+            -   run: echo "the job was automatically tiggered by a ${{github.event_name}} event."
+            -   run: echo "this job is now running on a ${{runner.os}} server hosted by GitHub!"
+            -   run: echo "the name of the branch is ${{github.ref}} and your repository is ${{github.repository}}"
+
+            -   name: Check out the repository code
+                uses: actions/checkout@v3
+
+            -   run: echo "the ${{github.repository}} has been cloned to the runner"
+
+            -   name: List files in the repository
+                run: |
+                    ls ${{github.workspace}}
+
+            -   name: Run python file
+                run: |
+                    pip install -r requirements.txt
+
+            -   name: check payload # this step is for debugging purposes only, so you can see the payload. 
+                run: echo "PAYLOAD:\n${PAYLOAD}\n"
+                env:
+                    PAYLOAD: ${{ toJSON(github.event) }}
+                
+            -   name: filter for magic comment   # check wheather magic command exists in the pr command
+                id: filter
+                if: contains(github.event.comment.body, env.MAGIC_COMMENT)  
+                run: echo "magic comment detected"
+                
+            -   name: Parse value from the magic command
+                if: steps.filter.outcome == 'success'
+                id: get-magic-value
+                shell: python
+                run: |
+                    import re, os
+                    # get the pr comment
+                    comment = os.getenv('PR_COMMENT','')
+                    match = re.search('${{ env.MAGIC_COMMENT }}[\s+](\S+)', comment)
+                    with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                        if match:
+                            print(f'VAL_FOUND=true', file=f)
+                            print(f'RUN_ID={match.group(1)}', file=f)
+                        else:
+                            print(f'VAL_FOUND=false', file=f)
+                env:
+                    PR_COMMENT: ${{ github.event.comment.body }}
+                
+            -   name: WandDB Run ID
+                if:  steps.get-magic-value.outcome == 'success' && steps.get-magic-value.outputs.VAL_FOUND == 'true'
+                run: echo "the wandb run id is  ${{ steps.get-magic-value.outputs.RUN_ID }}"
+                
+            -   name: WanDB experiment comparison/ model migration
+                if: steps.get-magic-value.outcome == 'success' && steps.get-magic-value.outputs.VAL_FOUND == 'true'
+                id: wandb-workflow
+                run: |
+                    cd src
+                    python compare_logs.py
+                    python model_register.py
+                env:
+                    ENTITY: 'himasha'
+                    PROJECT: 'mnist-experiment'
+                    TAG: 'baseline'
+                    RUN_ID: ${{steps.get-magic-value.outputs.RUN_ID}}
+                    WANDB_API_KEY: 'b77985991c4b2c51ccc6af56fdfd2515dac6016a'
+                    REGISTRY: 'mnist-registry'
+
+            -   name: Make PR Comment
+                shell: python
+                run: |
+                    import os
+                    from ghapi.core import GhApi
+                    owner , repo = os.environ['REPO'].split('/')
+                    api = GhApi(owner = owner , repo = repo)
+                    api.issues.create_comment(os.environ['NUMBER'] , f"New Product Candidate !!!! \n
+                                                    W&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \n
+                                                    W&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}" )
+                env:
+                    NUMBER: ${{ github.event.issue.number }}
+                    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+                    REPO: ${{github.repository}}
+
+
