@@ -37,28 +37,33 @@ def compare_runs(entity= "himasha" ,
     run_init =  get_baseline_run(entity=ENTITY , 
                                  project=PROJECT,
                                  tag=TAG )
+    
+    # get the reference run name from id
+    reference_path = f'{ENTITY}/{PROJECT}/{RUN_ID}'
+    run_reference = wandb_client.run(reference_path)
 
     #define the report
     report = wr.Report(
         entity=ENTITY,
         project=PROJECT,
         title='Compare Runs',
-        description=f"A demo of comparing runs for experiment {PROJECT} \n Baseline run id : {run_init.id} Current run id : {RUN_ID}"
+        description=f"A demo of comparing runs for experiment {PROJECT} \n Baseline run id : {run_init.name} Current run id : {run_reference.name}"
     )  
 
     # create the report
     pg = wr.PanelGrid(
         runsets=[
-            wr.Runset(ENTITY, PROJECT, "Run Comparison").set_filters_with_python_expr(f"Name in [ '{run_init.id}', '{RUN_ID}' ]")
+            wr.Runset(ENTITY, PROJECT, "Run Comparison").set_filters_with_python_expr(f"Name in [ '{run_init.name}', '{run_reference.name}' ]")
         ],
         panels=[
             wr.RunComparer(diff_only='split', layout={'w': 24, 'h': 15}),
         ]
     )
+    
     # save report into wandb
     report.blocks = report.blocks[:1] + [pg] + report.blocks[1:]
     report.save()
-    
+
     """
     to capture the report url into github action outputs we need to save that into special tmp file 
     captured inside GITHUB_OUTPUT enviroment variable
