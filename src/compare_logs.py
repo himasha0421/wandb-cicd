@@ -71,6 +71,5 @@ def compare_runs(entity= "himasha" ,
 
 if __name__=='__main__':
     # run the compre method
-
     url =  compare_runs()
     print(f"This is the Run Compre Report URL : {url}")
