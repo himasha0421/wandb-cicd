@@ -28,10 +28,10 @@ def compare_runs(entity= "himasha" ,
     
     # get the entity / project / tag / run id from enviroment variables
     assert os.environ['WANDB_API_KEY'] , "You must set the wandb client api key !!!!"
-    ENTITY = os.getenv['ENTITY'] or entity
-    PROJECT = os.getenv['PROJECT'] or project
-    TAG =  os.getenv['TAG'] or tag
-    RUN_ID = os.getenv['RUN_ID'] or run_id
+    ENTITY = os.getenv('ENTITY') or entity
+    PROJECT = os.getenv('PROJECT') or project
+    TAG =  os.getenv('TAG') or tag
+    RUN_ID = os.getenv('RUN_ID') or run_id
 
     # get the baseline run
     run_init =  get_baseline_run(entity=ENTITY , 
