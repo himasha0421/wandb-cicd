@@ -49,7 +49,7 @@ def compare_runs(entity= "himasha" ,
     # create the report
     pg = wr.PanelGrid(
         runsets=[
-            wr.Runset(ENTITY, PROJECT, "Run Comparison").set_filters_with_python_expr(f"Name in [ str({run_init.id}), str({RUN_ID}) ]")
+            wr.Runset(ENTITY, PROJECT, "Run Comparison").set_filters_with_python_expr(f"Name in [ '{run_init.id}', '{RUN_ID}' ]")
         ],
         panels=[
             wr.RunComparer(diff_only='split', layout={'w': 24, 'h': 15}),
