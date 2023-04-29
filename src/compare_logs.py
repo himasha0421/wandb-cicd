@@ -58,7 +58,7 @@ def compare_runs(entity= "himasha" ,
     # save report into wandb
     report.blocks = report.blocks[:1] + [pg] + report.blocks[1:]
     report.save()
-
+    
     """
     to capture the report url into github action outputs we need to save that into special tmp file 
     captured inside GITHUB_OUTPUT enviroment variable
