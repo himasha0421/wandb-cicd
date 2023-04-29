@@ -1,0 +1,24 @@
+name: GitHub I/O Actions Demo
+on:
+    push:
+        branches:
+            - dev
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    io:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: set github out variable
+                id: set-var
+                shell: python
+                run: |
+                    import os
+                    with open( os.environ['GITHUB_OUTPUT'] , 'a' ) as f:
+                        print( f'VAL=true' , file=f )
+            
+            -   name: get github out variable
+                id: get-var
+                run: echo "The value set by the previous step is  ${{ steps.set-var.outputs.VAL }} "
+              
