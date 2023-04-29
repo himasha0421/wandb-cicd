@@ -89,7 +89,7 @@ jobs:
                     owner , repo = os.environ['REPO'].split('/')
                     api = GhApi(owner = owner , repo = repo)
                     api.issues.create_comment(os.environ['NUMBER'], \
-                        f"New Product Candidate !!!! \nW&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
+                        f"New Productioin Model Candidate !!!! \nW&B Comparison Repo : ${{steps.wandb-workflow.outputs.REPORT_URL}} \
                         \nW&B Model Registry : ${{steps.wandb-workflow.outputs.MODEL_URL}}")
 
                 env:
