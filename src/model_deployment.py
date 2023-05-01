@@ -28,23 +28,6 @@ def load_model(entity='himasha',
     model_path = f'{ENTITY}/model-registry/{REGISTRY}:{TAG}'
     wandb_api.artifact(model_path).download("model_artifacts")
 
-
-def read_model():
-
-    # define model configs
-    model_config = {"hidden_layer_sizes": [32, 64],
-                "kernel_sizes": [3],
-                "activation": "ReLU",
-                "pool_sizes": [2],
-                "dropout": 0.5,
-                "num_classes": 10}
-
-    # initialize the conv model
-    lenet_model = ConvNet(**model_config)
-    # load the trained weights from checkpoint
-    lenet_model.load_state_dict(torch.load("model_artifacts/lenet.pt",map_location='cpu'))
-
-
 if __name__ == '__main__':
     # load the model
     load_model()

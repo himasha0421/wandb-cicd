@@ -79,7 +79,7 @@ jobs:
     Continuous-Deployment:
         name: AWS Deployment
         needs: build-and-push-ecr-image
-        runs-on: aws-cicd-host
+        runs-on: self-hosted
         steps:
             -   name: Checkout
                 uses: actions/checkout@v3
