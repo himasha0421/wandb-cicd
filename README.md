@@ -59,7 +59,23 @@ jobs:
             - run: echo "first pull request tigger github action"
 ```
 
-## step 4. 
+## step 4. add pr issue github action
+
+```
+name: W&B Integration
+on:
+    issue_comment: # tigger on pr comment
+
+env:
+    MAGIC_COMMENT: "/wandb" # this is a parameter you can change
+
+permissions:
+    contents: read
+    issues: write
+    pull-requests: write
+
+jobs:
+```
 
 
 
