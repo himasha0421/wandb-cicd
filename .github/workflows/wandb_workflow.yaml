@@ -12,7 +12,7 @@ permissions:
 
 jobs:
     WanDB-Workflow: # setup the running enviroment
-        if: (github.event.issue.pull_request != null)
+        if: (github.event.issue.pull_request != null) && (github.event.comment.body == '/wandb')
         runs-on: ubuntu-latest
         steps:
             -   run: echo "the job was automatically tiggered by a ${{github.event_name}} event."
@@ -78,7 +78,7 @@ jobs:
                     PROJECT: 'mnist-experiment'
                     TAG: 'baseline'
                     RUN_ID: ${{steps.get-magic-value.outputs.RUN_ID}}
-                    WANDB_API_KEY: ${{secrets.WANDB_API_KEY}}
+                    WANDB_API_KEY:  ${{secrets.WANDB_API_KEY}}
                     REGISTRY: 'mnist-registry'
 
             -   name: Make PR Comment

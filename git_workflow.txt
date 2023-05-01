@@ -1,0 +1,1 @@
+Link to your GitHub Actions workflow (don't forget to make the repo public): https://github.com/himasha0421/wandb-cicd/blob/dev/.github/workflows/wandb_workflow.yaml
