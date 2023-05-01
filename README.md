@@ -62,6 +62,7 @@ jobs:
 ## step 4. 
 
 
+
 ## step 5. Setup EC2 instance
 
 follow below commands 
