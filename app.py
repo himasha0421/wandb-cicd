@@ -12,6 +12,7 @@ application=Flask(__name__)
 app=application
 
 # initialize the model from wandb model regsitry
+
 lenet_model =  read_model()
 print("Model Summary : ",lenet_model)
 

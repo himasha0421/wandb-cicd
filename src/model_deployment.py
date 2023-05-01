@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 import torch
 import wandb
 
-from src.model import ConvNet
+from model import ConvNet
 
 
 def load_model(entity='himasha',
