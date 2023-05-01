@@ -1,3 +1,14 @@
 wandb
 ghapi
 regex
+pandas
+numpy
+seaborn
+matplotlib
+scikit-learn
+catboost
+xgboost
+dill
+Flask
+torch
+torchvision 

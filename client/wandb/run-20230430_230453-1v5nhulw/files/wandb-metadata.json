@@ -1,0 +1,104 @@
+{
+    "os": "Linux-5.15.0-69-generic-x86_64-with-glibc2.17",
+    "python": "3.8.13",
+    "heartbeatAt": "2023-04-30T17:35:03.547629",
+    "startedAt": "2023-04-30T17:34:53.043148",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/himasha0421/wandb-cicd.git",
+        "commit": "98be2c90c8734ed685cfe9ea57659ab8b9879ac4"
+    },
+    "email": "himasha0421@gmail.com",
+    "root": "/home/sharaaf/ADL/MLOps-Piepline/wandb-cicd",
+    "host": "sharaaf-nazeer",
+    "username": "sharaaf",
+    "executable": "/home/sharaaf/anaconda3/envs/fr_tenant/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2.4500000000000006,
+        "min": 800.0,
+        "max": 4500.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 0.811,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 0.8,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 0.8,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1.62,
+            "min": 800.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2.6,
+            "min": 800.0,
+            "max": 4500.0
+        }
+    ],
+    "disk": {
+        "total": 429.60811614990234,
+        "used": 151.6850929260254
+    },
+    "gpu": "NVIDIA GeForce RTX 2070",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2070",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 15.477874755859375
+    }
+}
